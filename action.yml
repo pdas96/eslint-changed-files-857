@@ -1,4 +1,4 @@
-name: ESLint changed files
+name: ESLint changed files (Pin eslint version at 8.57.0)
 description: Run ESLint on all changed files
 author: jackton1
 inputs:
@@ -41,7 +41,7 @@ inputs:
       (github-check, github-pr-review).
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
     required: false
-    default: 'github-pr-review'
+    default: 'github-check'
   filter_mode:
     description: |
       [Filter mode](https://github.com/reviewdog/reviewdog#filter-mode) for the reviewdog command
