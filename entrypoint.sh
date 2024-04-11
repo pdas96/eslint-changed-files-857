@@ -40,17 +40,17 @@ if [[ "$INPUT_ALL_FILES" == "true" ]]; then
     echo "Skipping annotations..."
     if [[ -n ${IGNORE_PATH} ]]; then
       # shellcheck disable=SC2086
-      npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} && exit_status=$? || exit_status=$?
+      npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" --no-warn-ignored ${EXTRA_ARGS} && exit_status=$? || exit_status=$?
     else
       # shellcheck disable=SC2086
-      npx eslint@8.57.0 ${CONFIG_ARG} ${EXTRA_ARGS} && exit_status=$? || exit_status=$?
+      npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored ${EXTRA_ARGS} && exit_status=$? || exit_status=$?
     fi
   elif [[ -n ${IGNORE_PATH} ]]; then
     # shellcheck disable=SC2086
-    npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" . > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
+    npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" --no-warn-ignored ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" . > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
   else
     # shellcheck disable=SC2086
-    npx eslint@8.57.0 ${CONFIG_ARG} ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" . > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
+    npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" . > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
   fi
   
   if [[ "$INPUT_SKIP_ANNOTATIONS" != "true" ]]; then
@@ -75,17 +75,17 @@ else
         echo "Skipping annotations..."
         if [[ -n ${IGNORE_PATH} ]]; then
           # shellcheck disable=SC2086
-          npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} ${INPUT_CHANGED_FILES} && exit_status=$? || exit_status=$?
+          npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} ${INPUT_CHANGED_FILES} && exit_status=$? || exit_status=$?
         else
           # shellcheck disable=SC2086
-          npx eslint@8.57.0 ${CONFIG_ARG} ${EXTRA_ARGS} ${INPUT_CHANGED_FILES} && exit_status=$? || exit_status=$?
+          npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored ${EXTRA_ARGS} ${INPUT_CHANGED_FILES} && exit_status=$? || exit_status=$?
         fi
       elif [[ -n ${IGNORE_PATH} ]]; then
         # shellcheck disable=SC2086
-        npx eslint@8.57.0 ${CONFIG_ARG} --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" ${INPUT_CHANGED_FILES} > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
+        npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored --ignore-path="${IGNORE_PATH}" ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" ${INPUT_CHANGED_FILES} > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
       else
         # shellcheck disable=SC2086
-        npx eslint@8.57.0 ${CONFIG_ARG} ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" ${INPUT_CHANGED_FILES} > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
+        npx eslint@8.57.0 ${CONFIG_ARG} --no-warn-ignored ${EXTRA_ARGS} -f="${ESLINT_FORMATTER}" ${INPUT_CHANGED_FILES} > "$RD_JSON_FILE" && exit_status=$? || exit_status=$?
       fi
       
       if [[ "$INPUT_SKIP_ANNOTATIONS" != "true" ]]; then
