@@ -7,7 +7,7 @@ module.exports = {
   },
   "overrides": [
     {
-      extends: ['plugin:react/recommended', 'standard-with-typescript'],
+      extends: ['plugin:react/recommended', 'standard-with-typescript', 'plugin:prettier/recommended'],
       files: ["*.ts", "*.tsx"],
       parserOptions: {
         ecmaVersion: 'latest',
@@ -20,7 +20,8 @@ module.exports = {
     'react'
   ],
   rules: {
-    '@typescript-eslint/triple-slash-reference': 'off'
+    '@typescript-eslint/triple-slash-reference': 'off',
+    "prettier/prettier": ["warn"],
   },
   settings: {
     react: {
